@@ -1,0 +1,93 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Free Web tutorials" />
+  <meta name="keywords" content="HTML, CSS, JavaScript" />
+  <meta name="author" content="John Doe" />
+  <meta name="viewport" content=
+    "width=device-width, initial-scale=1.0" />
+  <title>Register | Create Account</title>
+
+
+  <!--Font Awesome-->
+  <link rel="stylesheet" href=
+    "https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity=
+"sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+    crossorigin="anonymous" />
+
+
+
+  <!--Style CSS-->
+  {% load static %}
+  <link rel = "stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+  <link rel = "stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+  <link rel = "stylesheet" type = "text/css" href = "{% static 'css/register.css' %}" />
+
+  <link rel = "shortcut icon" href = "{% static 'images/memory_logo.svg'  %}" type="image/x-icon">  
+
+
+
+</head>
+
+<body>
+
+
+  <form class="container"  method = "POST" id = "f">
+    {% csrf_token %}
+    <div class="text" style = "color:black;">
+      <div class = "logo"><img src="{% static 'images/memory_logo.svg' %}"></div>
+      <p>Never stop learning</p>
+    </div>
+
+
+
+    
+    
+    <div class="your-input">
+      {% for error in form.non_field_errors%}
+            <p class = "errors">{{error}}</p>
+      {% endfor %}
+      <p class = "errors">{{form.username.errors.0}}</p>
+      <div class="input">
+        {{form.username}}
+        <label for = "{{field.id}}">username</label>
+      </div>
+
+      <p class = "errors">{{form.email.errors.0}}</p>
+      <div class="input">
+        {{form.email}}
+        <label for = "{{field.id}}">email</label>
+
+      </div>
+
+      <p class = "errors">{{form.password1.errors.0}}</p>
+      <div class="input">
+        {{form.password1}}
+        <label for = "{{field.id}}">password</label>
+      </div>
+
+      <p class = "errors">{{form.password2.errors.0}}</p>
+      <div class="input">
+        {{form.password2}}
+        <label for = "{{field.id}}">confirm password</label>
+      </div>
+
+
+    </div>
+    <input type = "submit" value = "Register">
+    <p class="join-link">
+      Already have an account?
+      <a href="{% url 'login' %}?next=/" class="join-now">
+        Login
+      </a>
+    </p>
+  </form>
+</body>
+
+</html>

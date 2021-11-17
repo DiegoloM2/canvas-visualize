@@ -1,0 +1,49 @@
+.container {
+    padding-left:1em;
+    padding-right:1em;
+    width:50%;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+}
+
+@media (max-height:700px) {
+	.container {
+		height: max-content !important;
+		margin:2rem;
+	}
+
+	.join-link {
+		padding:2rem !important;
+	}
+}
+
+@media (max-width:900px) {
+    .container {
+        width: 90% !important;
+    }
+}
+
+input[type="submit"] {
+    width:100%;
+}
+
+.your-input {
+    width: 90%;
+    padding:0;
+    margin:0;
+}
+
+.input {
+    width:100%;
+}
+
+.text {
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+
+.logo img {
+    width:5em;
+}

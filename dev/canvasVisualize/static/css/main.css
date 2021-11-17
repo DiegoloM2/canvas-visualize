@@ -1,0 +1,184 @@
+
+
+
+:root {
+  --background1: black;
+  --background2: #004e92;
+  --textColor: rgb(255,255,255);
+  --linkColor: rgba(255,255,255,0.55);
+}
+
+
+
+
+body {
+
+  min-height: 100vh;
+
+  background-color:var(--background1);
+  color:var(--textColor);
+  font-family:Verdana, sans-serif;
+  z-index: 1;
+}
+
+
+a , .nav-link {
+  text-decoration: none;
+  color: var(--linkColor);
+  font-weight:bold;
+}
+a:hover, .nav-link:hover {
+  transition: color 0.2s ease;
+  color: var(--textColor)
+}
+
+ul {
+  list-style-type:none;
+}
+
+
+
+.account-nav {
+  position:absolute;
+  right:3.6em;
+}
+
+
+
+ /* 
+ Personal Deck Styling
+ */
+.default-avatar img {
+  filter: invert(99%) sepia(0%) saturate(5700%) hue-rotate(158deg) brightness(80%) contrast(80%);
+  opacity: 0.7;
+}
+.default-avatar img:hover {
+filter: invert(99%) sepia(0%) saturate(5700%) hue-rotate(158deg) brightness(150%) contrast(80%);
+}
+
+.edit-svg {
+  width:2em;
+  height:2em;
+  cursor:pointer;
+  filter: brightness(70%);
+}
+.edit-svg:hover {
+filter: brightness(100%);
+}
+
+/* Button Styling */
+
+.btn {
+  color: var(--linkColor);
+  background-color: rgb(0, 10, 102);
+  font-weight:700;
+}
+
+.btn:hover {
+  filter:brightness(150%);
+  transition: ease 0.3s all;
+  color: var(--textColor)
+}
+
+.action-btn {
+  width:15em;
+  height:5em;
+  color: var(--linkColor);
+}
+
+
+
+
+/* Register Styling */
+
+.errors {
+  color:red;
+  font-size:0.8rem;
+  font-style:italic;
+}
+
+
+.logo img{
+  width: 1.8rem;  
+}
+.logo {
+  display:inline;
+  width:min-content;
+  position:relative;
+  top:0.25rem;
+}
+
+
+
+
+
+
+.bi-pencil, .bi-trash{
+  height:0.75em !important ;
+  stroke-width:0px !important;
+}
+
+.dropdown-menu {
+  min-width: 6em;
+  margin-left: 1.5em !important; 
+}
+
+.loading-gif {
+  height:5em !important;
+   width:5em !important;
+   position:absolute !important;
+   bottom:40% !important;
+   top:40% !important;
+   right:40% !important;
+   left:40% !important;
+}
+
+.nav-toggler {
+  color:rgba(255,255,255,0.55);
+}
+
+.nav-toggler:hover, .nav-toggler:active {
+  color: var(--textColor);
+  border-bottom:1px solid var(--textColor);
+  transition:all 0.5s ease-in-out;
+}
+
+.canvas-background {
+  z-index:-1;
+}
+
+.visualization-title {
+  font-weight: 700;
+}
+
+
+.visualization {
+  width: 100%;
+  min-height: 40em;
+  height:70vh;
+  border: 0.2px solid grey;
+  border-radius:0.5em;
+}
+
+.checked {
+  color: yellow;
+}
+.fa-star {
+  cursor:pointer;
+  padding-right:0.2em;
+}
+
+.rating-form {
+  text-align:right;
+}
+
+.small-visualization {
+  height: 40vh;
+  color:red;
+  padding:1em;
+  min-height:40vh;
+}
+
+.form-control {
+  width: 50%;
+}

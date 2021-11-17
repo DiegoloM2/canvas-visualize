@@ -1,0 +1,159 @@
+.btn-show-friend-request-form {
+    cursor:pointer;
+    width: max-content;
+    font-size: 1.5em;
+    padding: 1em;
+    position:relative;
+    top:30%;
+    left:5%;
+    
+}
+
+.figure {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    flex-wrap:wrap;
+}
+.figure-caption {
+    color: rgba(255,255,255);
+    font-size: 1.5em;
+}
+
+
+.mini {
+    height: 2em;
+    width: 2em;
+    display:inline;
+}
+
+.mini img {
+    height:2em;
+    width:2em;
+}
+
+.friend-container {
+    border: 1px solid rgba(255,255,255,0.55);
+    padding: 0.5em;
+    border-radius: 0.25em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.friend-container:hover {
+    border: 1px solid rgba(230,230,230);
+}
+
+.br-grey {
+    border-right:1px solid rgba(255,255,255,0.1);
+}
+
+.received-friend-request {
+    padding: 0.5em 0em;
+    margin-left: 0.5em;
+    border: 0.25px solid rgb(255,255,255, 0.3);
+    border-radius: 0.25em;
+}
+
+
+
+.friend-request-form {
+    border: 1px solid lightgrey;
+    padding:1em;
+
+    border-radius: 0.2em;
+}
+
+
+.profile-photo img, .avatar {
+    width: 10em;
+    height:10em;
+    border-radius: 10em;
+
+}
+
+.avatar {
+    color:lightgrey
+}
+
+.avatar:hover {
+    filter: brightness(80%);
+    cursor:pointer;
+} 
+
+.profile-photo {
+    text-align:center;
+}
+
+.bi-pencil {
+    width: 1em;
+}
+
+.friend {
+    color:black;
+}
+
+.friend {
+    padding:0;
+    margin:0;
+    border-radius:0.2em;
+}
+
+.friend img {
+    border-top-left-radius:0.2em; 
+    border-top-right-radius:0.2em;
+    height:10em;
+}
+
+
+@media (min-width:768px) {
+.col-md-4 {
+    width:30%;
+}
+}
+
+.friend-request {
+    padding:5px;
+    background-color:lightgrey;
+    border-radius: 0.2em;
+    color: black;
+
+    margin-bottom:1em;
+}
+
+.friend-request img {
+    width:3em;
+    height:3em;
+    border-radius: 3em; 
+    padding:0;
+}
+
+
+.friend-request button {
+    width:3.8em;
+    height:2em;
+    font-size:smaller;
+    padding:0;
+}
+
+.mini-avatar {
+    display:inline-block;
+
+    background-color:rgb(200,200,200);
+    width:3em;
+    height:3em;
+    border-radius:3em;
+}
+
+.figure-caption {
+    cursor:pointer;
+    color: rgba(255,255,255,0.55);
+    font-weight:bold;
+}
+
+.figure-caption:hover {
+    color: rgb(230,230,230);
+    transition: color ease 0.2s;
+}

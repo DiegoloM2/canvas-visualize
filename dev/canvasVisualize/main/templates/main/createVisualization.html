@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>asdasdf</title>
+
+    <link href = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css" rel = "stylesheet" type = "text/css" />
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+    <link href = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/addon/lint/lint.min.css" rel = 'stylesheet' type = 'text/css' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    
+    {% load static %}
+    <link href = "{% static 'css/main.css' %}" rel = "stylesheet">
+    <link rel="stylesheet" href="{% static 'css/cardGrid.css' %}">
+
+</head>
+
+
+
+<body>
+    <div class = "container">
+
+    <nav class = "navbar navbar-expand-md" >
+      
+        <button class = "navbar-toggler " type = "button" data-bs-toggle = "collapse" data-bs-target = "#toggleMobileMenu" aria-controls = "toggleMobileMenu" aria-expanded = "false" aria-label = "Toggle Navigation">
+            <!-- <span class = "navbar-toggler-icon"></span> -->
+            <span class = "nav-toggler">menu</span>
+        </button>
+  
+        <div class = "collapse navbar-collapse" id = "toggleMobileMenu">
+        <ul class = "navbar-nav ms-auto">
+  
+  
+          {% if user.is_authenticated%}
+    
+        <li>
+            <a href = "{% url 'visualizations' %}" class = "nav-link" 
+                {% if request.path == "/visualizations/" %}style = "color:white;text-decoration:underline"{%endif%}
+                title = "home">
+                visualizations
+            </a>
+        </li>
+
+            <li>
+                <a href = "{% url 'createVisualization' %}" class = "nav-link" title = "add" {% if request.path == "/visualization/create/" %}style = "color:white;text-decoration:underline;"{%endif%}>
+                create
+                </a>
+            </li>
+  
+            <li>
+                <a href = "{% url 'main' %}" class = "nav-link" 
+                    {% if request.path == "/" %}style = "color:white;text-decoration:underline"{%endif%}
+                    title = "home">
+                    home
+                </a>
+            </li>
+  
+  
+  
+  
+  
+          {% else %}
+  
+            <li><a href = "{% url 'login' %}?next={% url 'main' %}" class = "nav-link">login</a></li>
+            <li><a href = "{% url 'register' %}" class = "nav-link">register</a></li>
+  
+          {% endif %}
+  
+  
+  
+  
+        </ul>
+        </div>
+        </nav>
+        
+        <div class = "title m-3" style = "text-align:center;align-self:center;font-weight:700;">
+            <h1 style = "font-weight: 700;">Create a Visualization</h1>
+        </div>
+
+    <form action = "" method = "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Title: {{form.title}}</p>
+
+
+
+        <textarea name = "code" id = "codemirrorContainer" placeholder = "enter your code here" style = "width:50%;"></textarea>
+        <button class = "btn my-3" id = "test-btn">test your code</button>
+
+        <div class = "visualization small-visualization m-2" style = "display:none;">
+            <canvas class = "canvas-visualization"></canvas>
+        </div>
+
+        <input type = "submit" value = "submit" id = "submit-btn" class = "btn my-3" style = "display:none">
+
+        <textarea name = "imgPreview" hidden></textarea>
+    </form>
+
+    
+
+
+    </div>
+
+
+
+
+
+
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/javascript/javascript.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/keymap/vim.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/addon/edit/matchbrackets.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/addon/edit/closebrackets.min.js"></script>
+    <script src="https://unpkg.com/jshint@2.9.6/dist/jshint.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/addon/lint/lint.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/addon/lint/javascript-lint.min.js"></script>
+
+    <script>
+        var Editor = CodeMirror.fromTextArea(document.getElementById("codemirrorContainer"), 
+        {
+
+
+
+            theme: 'monokai', 
+
+
+            mode:"javascript", 
+            lineNumbers:true,
+            autocorrect:true, 
+            keyMap:'vim', 
+            matchBrackets:true, 
+            autoCloseBrackets:true, 
+            lint:true,
+            gutters: ["CodeMirror-lint-markers"]
+        }
+        );
+        var msg = `//The canvas's width will be set by us for better UE. 
+//Get the canvas as follows: canvas = document.querySelector("canvas")
+//Remember not to use any animations dependent on the screen dimensions or some specific container dimensions eg: [do not do]: 
+//                  if (this.y + this.radius > window.innerHeight || this.y - this.radius < 0) this.dy = -this.dy; 
+//instead do: 
+//                  if (this.y + this.radius > canvas.height || this.y - this.radius < 0) this.dy = -this.dy; 
+        `
+        Editor.setValue(msg)
+
+    </script>
+    <script>
+        document.getElementById('test-btn').onclick = function (event) {
+            event.preventDefault();
+            var scriptTag =  document.createElement("script")
+            scriptTag.text = `visualization = function () {
+                ${Editor.getValue()};
+            }`
+
+            console.log(scriptTag)
+            try {
+                document.body.appendChild(scriptTag)
+                document.querySelector(".visualization").style.display = "block";
+                document.getElementById("submit-btn").style.display="block";
+
+                visualization();
+
+                canvas = document.querySelector('.canvas-visualization');
+                canvas.style.width = "100%";
+                canvas.style.height = "100%";
+            }
+            catch (error) {
+                document.querySelector(".visualization").textContent = error;
+            }
+
+        }
+
+
+        document.getElementById("submit-btn").onclick = function (event) {
+            event.preventDefault();
+            document.getElementsByName('imgPreview')[0].value = canvas.toDataURL();
+            console.log(document.querySelector('form'));
+            document.querySelector('form').submit()
+
+
+        }
+    </script>
+    <script src = "{% static 'js/canvas2image.js' %}"></script>
+
+</body>
+</html>
